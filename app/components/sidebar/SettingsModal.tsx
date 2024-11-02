@@ -17,6 +17,14 @@ interface SettingsModalProps {
   onClose: () => void;
   currentUser: User;
 }
+interface CloudinaryUploadWidgetInfo {
+  secure_url?: string;
+  // Add other properties if needed
+}
+
+interface CloudinaryUploadWidgetResults {
+  info?: CloudinaryUploadWidgetInfo | string; // Allow info to be a string or the detailed object
+}
 const SettingsModal: React.FC<SettingsModalProps> = ({
   isOpen,
   onClose,
@@ -39,8 +47,16 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
   });
 
   const image = watch("image");
-  const handleUpload = (result: any) => {
-    setValue("image", result?.info?.secure_url, { shouldValidate: true });
+
+  const handleUpload = (result: CloudinaryUploadWidgetResults) => {
+    const secureUrl =
+      typeof result.info === "string" ? result.info : result.info?.secure_url;
+
+    if (secureUrl) {
+      setValue("image", secureUrl, { shouldValidate: true });
+    } else {
+      console.error("Secure URL is undefined");
+    }
   };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
@@ -112,7 +128,6 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
             <Button disabled={isLoading} type="submit">
               Save
             </Button>
-
           </div>
         </div>
       </form>

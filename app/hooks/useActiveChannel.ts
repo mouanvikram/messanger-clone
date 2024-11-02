@@ -17,15 +17,16 @@ const useActiveChannel = () => {
     channel.bind("pusher:subscription_succeeded", (members: Members) => {
       const initialMembers: string[] = [];
 
-      members.each((member: Record<string, any>) =>
+      members.each((member: Record<string, string>) =>
         initialMembers.push(member.id)
       );
       set(initialMembers);
     });
-    channel.bind("pusher:member_added", (members: Record<string, any>) => {
+    
+    channel.bind("pusher:member_added", (members: Record<string, string>) => {
       add(members.id);
     });
-    channel.bind("pusher:member_removed", (members: Record<string, any>) => {
+    channel.bind("pusher:member_removed", (members: Record<string, string>) => {
       remove(members.id);
     });
     return () => {

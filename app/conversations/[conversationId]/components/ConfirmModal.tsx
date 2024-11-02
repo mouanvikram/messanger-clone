@@ -33,7 +33,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
             router.refresh();
 
         })
-        .catch((e)=>{
+        .catch(()=>{
             toast.error("Something went wrong");
         })
         .finally(()=>{

@@ -6,12 +6,11 @@ import Link from "next/link";
 interface MobileItemProps {
   label: string;
   href: string;
-  icon: any;
+  icon: React.ElementType;
   active?: boolean;
   onClick?: () => void;
 }
 const MobileItem: React.FC<MobileItemProps> = ({
-  label,
   href,
   icon: Icon,
   active,
@@ -24,6 +23,7 @@ const MobileItem: React.FC<MobileItemProps> = ({
   };
   return (
     <Link
+    
       onClick={handleClick}
       href={href}
       className={clsx(

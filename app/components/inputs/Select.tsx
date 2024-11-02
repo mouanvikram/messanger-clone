@@ -1,11 +1,11 @@
 "use client";
 import ReactSelect from "react-select";
-interface SelectProps {
+interface SelectProps<T = unknown> {
   label: string;
 
-  value?: Record<string, any>;
-  onChange: (value: Record<string, any>) => void;
-  options: Record<string, any>;
+  value?: T;
+  onChange: (value: T) => void;
+  options: T[];
   disabled?: boolean;
 }
 
@@ -30,7 +30,7 @@ const Select: React.FC<SelectProps> = ({
           value={value}
           onChange={onChange}
           isMulti
-          options={options as readonly {}[]}
+          options={options}
           menuPortalTarget={document.body}
           styles={{
             menuPortal: (base) => ({ ...base, zIndex: 9999 }),

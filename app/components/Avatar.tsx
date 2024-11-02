@@ -7,6 +7,7 @@ interface AvatarProps {
 }
 const Avatar: React.FC<AvatarProps> = ({ user }) => {
   const { members } = useActiveList();
+  // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
   const isActive = user?.email ? members.indexOf(user?.email!) !== -1 : false;
 
   return (
