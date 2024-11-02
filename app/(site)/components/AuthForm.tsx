@@ -32,7 +32,7 @@ const AuthForm = () => {
     } else {
       setVariant("LOGIN");
     }
-  }, [variant]);
+  }, [variant,router]);
 
   const {
     register,
