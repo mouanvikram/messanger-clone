@@ -24,7 +24,7 @@ const AuthForm = () => {
       toast.success("Logged in");
       router.push("/conversations");
     }
-  }, [session?.status]);
+  }, [session?.status,router]);
 
   const toggleVAriant = useCallback(() => {
     if (variant == "LOGIN") {
@@ -32,7 +32,7 @@ const AuthForm = () => {
     } else {
       setVariant("LOGIN");
     }
-  }, [variant,router]);
+  }, [variant]);
 
   const {
     register,
